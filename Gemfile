@@ -13,8 +13,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'devise'
-gem "mongoid-paperclip"
-
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
+# gem 'rmagick'
 
 group :development, :test do
   gem 'byebug'

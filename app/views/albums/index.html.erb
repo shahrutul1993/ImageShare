@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>created date</th>
        <th>Owner name</th>
+       <th>images</th>
       <th colspan="3">Action</th>
     </tr>
   </thead>
@@ -18,6 +19,11 @@
         <td><%= album.name %></td>
         <td><%= album.created_at %></td>
         <td><%= album.user.name%></td>
+        <td>
+         <% album.images.each do |image_model| %>
+         <%= image_tag image_model.image.url(:medium), class: "img-responsive" %>
+        <% end %>
+        </td>
         <td><%= link_to 'Show', album %></td>
         <td><%= link_to 'Edit', edit_album_path(album) %></td>
         <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>

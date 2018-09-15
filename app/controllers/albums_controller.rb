@@ -11,6 +11,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = current_user.albums.build
+    # @images = @album.images.build
   end
 
   def edit
