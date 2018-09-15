@@ -1,1 +1,21 @@
-<h1>Hello imageshare</h1>
+<h1>All Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>created date</th>
+       <th>Owner name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= link_to album.name %></td>
+        <td><%= album.created_at %></td>
+        <td><%= album.user.try(:name) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
