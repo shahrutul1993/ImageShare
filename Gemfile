@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'devise'
-# gem "mongoid-rspec", ">= 1.4.6", :group => :test
+gem "mongoid-paperclip"
 
 
 group :development, :test do
