@@ -3,6 +3,13 @@
 <p>
   <strong>Name:</strong>
   <%= @album.name %>
+  <%#= image_tag @album.image.url%>
+</p>
+<p>
+	 <strong>Images:</strong>
+	 <% for images in @album.images %>
+  	<%= link_to image_tag(images.image.url(:thumb)), images.image.url(:original) %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |

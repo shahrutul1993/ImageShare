@@ -1,4 +1,4 @@
-<%= form_for(@album) do |f| %>
+<%= form_for @album, html: { multipart: true } do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
@@ -15,6 +15,29 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <div class="field">
+    <%= f.label :imageupload %><br>
+    <%= f.fields_for :images do |images|%>
+    <% if images.object.new_record?%>
+     <p>
+      <%= images.file_field :image %>
+    </p> 
+    <% end %>
+    <% end %>
+  </div>
+
+  <h4>
+    product images
+  </h4>
+
+  <%= f.fields_for :images do |images|%>
+    <% unless images.object.new_record? %>
+    <%= link_to image_tag(images.object.image.url(:thumb)),images.object.image.url(:original) %>
+    <% end %>
+    <% end %>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
