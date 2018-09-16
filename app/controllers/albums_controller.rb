@@ -11,10 +11,11 @@ class AlbumsController < ApplicationController
 
   def new
     @album = current_user.albums.build
-    # @images = @album.images.build
+   5.times { @album.images.build }
   end
 
   def edit
+    5.times { @album.images.build }
   end
 
   def create
@@ -57,6 +58,6 @@ class AlbumsController < ApplicationController
     end
 
     def album_params
-      params.require(:album).permit(:name)
+      params.require(:album).permit(:name,images_attributes: [:image])
     end
 end

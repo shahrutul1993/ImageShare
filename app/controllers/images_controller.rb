@@ -1,55 +1,47 @@
-# class ImagesController < ApplicationController
-# 	before_action :set_product, only: [:index, :new, :create]
-#   before_action :set_product_image, only: [:destroy]
+class ImagesController < ApplicationController
+	before_action :set_album, only: [:index, :new, :create]
+    # before_action :set_album_image, only: [:destroy]
 	
 
 
-# 	def new
-# 	end
+	def new
+	end
 
-# 	def index
-# 		@images = @album.images
-# 		@image = @album.images.new
-# 	end
+	def index
+		@images = @album.images
+		@image = @album.images.new
+	end
 
-# 	def create
-# 		@image = @album.images.new(image_params)
-# 		respond_to do |format|
-#       if @image.save
+	def create
+		@image = @album.images.new(image_params)
+		respond_to do |format|
+      if @image.save
         
-#         # format.html { redirect_to :back }
-#         format.json { render json: @image }
-#         format.js { render layout: false }
-#       else
-#         format.html { render :new }
-#         format.json { render json: @image.errors, status: :unprocessable_entity }
-#       end
-#     end
-# 	end
+        # format.html { redirect_to :back }
+        format.json { render json: @image }
+        format.js { render layout: false }
+      else
+        format.html { render :new }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
+      end
+    end
+	end
+  
+private
 
-#   def destroy
-#     @image.destroy
-#     respond_to do |format|
-#       format.html { redirect_to merchant_store_store_product_images_path(@store,@new_store_product), notice: 'Image was successfully deleted.' }
-#       format.json { head :no_content }
-#     end
-#   end
+  def set_album
+  	@new_album = Album.find(params[:id])
+  	@user = @new_album.user
+  end
 
-# private
+  def image_params
+  	params.require(:image).permit(:file, :id)
+  end
 
-#   def set_product
-#   	@new_store_product = NewStoreProduct.find(params[:store_product_id])
-#   	@store = @new_store_product.store
-#   end
+  def set_album_image
+    @image = Image.find(params[:id])
+    @new_album = @image.album
+    @user = @album.user
+  end
 
-#   def image_params
-#   	params.require(:image).permit(:file, :id)
-#   end
-
-#   def set_product_image
-#     @image = Image.find(params[:id])
-#     @new_store_product = @image.new_store_product
-#     @store = @new_store_product.store
-#   end
-
-# end
+end

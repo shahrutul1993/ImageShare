@@ -7,6 +7,6 @@ class Album
   field :created_at, type: Date  
 
   belongs_to :user
-  embeds_many :images, :cascade_callbacks => true
+  has_many :images
   accepts_nested_attributes_for :images, :allow_destroy => true
 end

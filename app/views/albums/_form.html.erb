@@ -18,8 +18,24 @@
 
   <div class="field">
     <%= f.label :imageupload %><br>
-    <%= file_field_tag('album_images_attributes_file', multiple: true, name: "album[images_attributes][][file]") %>  
+    <%= f.fields_for :images do |images|%>
+    <% if images.object.new_record?%>
+     <p>
+      <%= images.file_field :image %>
+    </p> 
+    <% end %>
+    <% end %>
   </div>
+
+  <h4>
+    product images
+  </h4>
+
+  <%= f.fields_for :images do |images|%>
+    <% unless images.object.new_record? %>
+    <%= link_to image_tag(images.object.image.url(:thumb)),images.object.image.url(:original) %>
+    <% end %>
+    <% end %>
 
 
   <div class="actions">

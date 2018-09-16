@@ -3,9 +3,9 @@ class Image
   include Mongoid::Paperclip
 
   field :album_id, type: Integer
-  # attr_accessible :file
-   # belongs_to :album
+   belongs_to :album
 
-   embedded_in :album, :inverse_of => :images
-  has_mongoid_attached_file :image
+  	has_mongoid_attached_file :image, :styles => { :medium => "640x480>", :thumb => "100x100#"}
+  	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
 end
