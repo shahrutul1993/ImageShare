@@ -9,12 +9,12 @@
         <% @albums.each do |album| %>
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-           <% album.images.each.first do |image_model| %>
+           <% album.images.limit(1).each do |image_model| %>
             <%= image_tag image_model.image.url(:medium), class: "img-responsive" %>
           <% end %>
             <div class="card-body">
               <h4 class="card-title">
-               <small>Album Name: </small><%= link_to album.name %>
+               <small>Album Name: </small><%= link_to album.name, album %>
               </h4>
               <p class="card-text">Created Date:<%= album.created_at %></p>
               <p class="card-text">Owner Name:<%= album.user.try(:name) %></p>
