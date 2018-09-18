@@ -10,7 +10,9 @@
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100">
            <% album.images.limit(1).each do |image_model| %>
+           <%= link_to album_path(album) do%>
             <%= image_tag image_model.image.url(:medium), class: "img-responsive" %>
+          <% end %>
           <% end %>
             <div class="card-body">
               <h4 class="card-title">
