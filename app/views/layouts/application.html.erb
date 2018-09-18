@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <%= link_to "Home", root_path, :class => 'nav-link'%>
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -26,7 +26,7 @@
              <% if user_signed_in? %>
  		   		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 			<% else %>
-    			<%= link_to "Sign in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %>
+    			<%= link_to "Sign in", new_user_session_path %>  <%= link_to "Sign up", new_user_registration_path %>
 			<% end %>
             </li>
           </ul>
