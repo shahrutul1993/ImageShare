@@ -1,21 +1,62 @@
-<h1>All Albums</h1>
+    <!-- Page Content -->
+    <div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>created date</th>
-       <th>Owner name</th>
-    </tr>
-  </thead>
+      <!-- Page Heading -->
+      <h1 class="my-4">All Album
+      </h1>
 
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= link_to album.name %></td>
-        <td><%= album.created_at %></td>
-        <td><%= album.user.try(:name) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="row">
+        <% @albums.each do |album| %>
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+           <% album.images.limit(1).each do |image_model| %>
+            <%= image_tag image_model.image.url(:medium), class: "img-responsive" %>
+          <% end %>
+            <div class="card-body">
+              <h4 class="card-title">
+               <small>Album Name: </small><%= link_to album.name, album %>
+              </h4>
+              <p class="card-text">Created Date:<%= album.created_at %></p>
+              <p class="card-text">Owner Name:<%= album.user.try(:name) %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <!-- /.row -->
+
+      <!-- Pagination -->
+     <!--  <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul> -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Created By Rutul Shah 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>

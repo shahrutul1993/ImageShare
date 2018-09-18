@@ -1,3 +1,6 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 panel panel-default">
 <%= form_for @album, html: { multipart: true } do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
@@ -11,34 +14,57 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+ <div class="field z-form ">
+  <div class="form-horizontal z-hor">
+  <div class="form-group">
+    <%= f.label :name, class: "control-label col-sm-2" %><br>
+     <div class="col-sm-10">
+    <%= f.text_field :name,class: "form-control" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :imageupload %><br>
-    <%= f.fields_for :images do |images|%>
-    <% if images.object.new_record?%>
+<div class="form-group">
+    <%= f.label :imageupload, class: "control-label col-sm-2" %><br>
+     <div class="col-sm-10">
+        <%= f.fields_for :images do |images|%>
+        <% if images.object.new_record?%>
      <p>
-      <%= images.file_field :image %>
+      <%= images.file_field :image,class: "form-control" %>
     </p> 
     <% end %>
     <% end %>
   </div>
+  </div>
 
-  <h4>
-    product images
+<% if params[:action] == "edit"%>
+<div class="form-group">
+   <h4>
+    Album images
   </h4>
-
-  <%= f.fields_for :images do |images|%>
+     <div class="col-sm-10">
+       <%= f.fields_for :images do |images|%>
     <% unless images.object.new_record? %>
     <%= link_to image_tag(images.object.image.url(:thumb)),images.object.image.url(:original) %>
     <% end %>
     <% end %>
+  </div>
+  </div>
+  <% end %>
 
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="actions z-form">
+      <%= f.submit 'Submit Album', :class => 'btn btn-primary center-block' %>
+    </div>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+

@@ -1,5 +1,17 @@
-<h1>New Album</h1>
+<h1 class="text-center">New Album Form</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', albums_path %>
+<div class="form-group">
+<%= link_to 'Back', albums_path, :class => 'btn btn-primary center-block z-back' %>
+</div>
+
+<style type="text/css">
+	.z-back{
+	color: #fff;
+	background-color: #0062cc;
+    border-color: #005cbf;
+    display: inline-block;
+    margin: 9px 78px;
+	}
+</style>

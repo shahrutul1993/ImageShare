@@ -1,37 +1,166 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center">Welcome To Image Sharing system</h1>
+<div class="col-md-12 text-center">
+  <%= link_to 'Create Album', new_album_path,class: "btn btn-primary text-center" %>
+</div>
 
-<h1>Listing Albums</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>created date</th>
-       <th>Owner name</th>
-       <th>images</th>
-      <th colspan="3">Action</th>
+ <div class="container">
+<div class="row">
+<div class="col-md-12 z-pad">
+<table class="table table-hover">
+  <thead class="z-inverse">
+    <tr class="z-height">
+      <th class="z-pad1">Album Name</th>
+      <th class="z-pad1">created date</th>
+       <th class="z-pad1">Owner name</th>
+       <th class="z-pad1">images</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.name %></td>
-        <td><%= album.created_at %></td>
-        <td><%= album.user.name%></td>
-        <td>
-         <% album.images.each do |image_model| %>
+      <tr class="z-height">
+        <td class="width"><%= link_to album.name,album %></td>
+        <td class="width"><%= album.created_at %></td>
+        <td class="width"><%= album.user.name%></td>
+        <td class="width">
+         <% album.images.limit(1).each do |image_model| %>
          <%= image_tag image_model.image.url(:medium), class: "img-responsive" %>
         <% end %>
         </td>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="width"><%= link_to 'Show', album %></td>
+        <td class="width"><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td class="width"><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+ </div> 
+</div>
+</div>
 <br>
 
-<%= link_to 'Create Album', new_album_path %>
+
+<style type="text/css">
+.z-img{
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index:-100;
+}
+.container {
+   z-index:2;
+}
+
+.header {
+  //margin-top:12%;
+  color:#fff;
+}
+
+.header h1 {
+   color:#fff;
+}
+.caption{
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+}
+
+.z-pad{
+  padding-top: 31px;
+}
+
+.z-form{
+  padding-bottom: 15px;
+}
+
+span.input-group-addon {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    height: 34px;
+    width: 40px;
+}
+
+.width{
+  min-width: 100px;
+}
+.z-height{
+height: 47px;
+}
+.z-inverse{
+  background-color: #333333;
+    color: white;
+}
+
+.z-pad1{
+  padding-bottom: 14px!important;
+}
+
+.z-hor{
+    padding-top: 26px;
+}
+.text-center{
+   // padding-top: 6px;
+    /*color:#fff;*/
+}
+
+
+.social-icon {
+  list-style: none;
+  padding: 0;
+  margin: -27px;
+}
+
+.social-icon li{
+  display: inline-block;
+  text-align: center;
+}
+
+.social-icon a {
+  display: block;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.social-icon a {
+     background: rgb(51, 122, 183);
+    color: #fff;
+}
+
+.social-icon a:hover {
+  background:#090909 ; /* social icon hover background color */
+  color: #fff; /* social icon hover color */
+}
+
+.footer {
+  bottom: 0;
+  padding-top: 5px;
+  width: 100%;
+  height: 60px;
+  background-color: #f8f8f8;
+  position: fixed;
+}
+.jumbotron p {
+    margin-bottom: 49px;
+    font-size: 21px;
+    font-weight: 200;
+}
+.z-btn{
+    text-align: center;
+    margin-top: -12px;
+}
+.z-leave{
+  font-family: 'Ravi Prakash', cursive;
+    font-size: x-large;
+    border-bottom: 3px solid #337ab7;
+}
+label.control-label.col-sm-2 {
+    margin-top: 21px;
+}
+</style>

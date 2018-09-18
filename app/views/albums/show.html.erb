@@ -1,16 +1,40 @@
-<p id="notice"><%= notice %></p>
-
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<div class="panel panel-default">
+<div class="panel-body">
 <p>
-  <strong>Name:</strong>
+  <strong>Album Name:</strong>
   <%= @album.name %>
-  <%#= image_tag @album.image.url%>
 </p>
+</div>
+
 <p>
 	 <strong>Images:</strong>
 	 <% for images in @album.images %>
   	<%= link_to image_tag(images.image.url(:thumb)), images.image.url(:original) %>
   <% end %>
 </p>
+</div>
+</div>
+</div>
+<% if user_signed_in? %>
+<%= link_to 'Edit', edit_album_path(@album), :class => 'btn btn-primary center-block z-back' %> |
+<%= link_to 'Back', albums_path, :class => 'btn btn-primary center-block z-back'%>
+<% end %>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<% unless user_signed_in? %>
+<%= link_to 'Back to Home',root_path,:class => 'btn btn-primary center-block z-root'%>  
+<%end%>
+
+<style type="text/css">
+	.z-root{
+	color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: inline-block;
+    margin: 10px 75px;
+}
+	}
+</style>
+
